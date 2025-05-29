@@ -4,11 +4,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 def submit_petfess(submission, open_GUI=False):
-    
     '''
     This function is used to submit a message to the Petfess page.
     It will handle the cookie consent popup and submit the message.
@@ -20,6 +18,8 @@ def submit_petfess(submission, open_GUI=False):
         None
     '''
 
+    print("** Submitting submission: '", submission, "' to Petfess... **")
+
     # Configure visible Chrome window
     chrome_options = webdriver.ChromeOptions()
     if open_GUI:
@@ -30,7 +30,7 @@ def submit_petfess(submission, open_GUI=False):
 
     try:
 
-        print("Opening Petfess page...")
+        print("Opening Petfess submit page...")
         driver.get("https://www.crush.ninja/en-us/pages/petfess/")
         
         # Wait for cookie popup to appear (up to 10 seconds)

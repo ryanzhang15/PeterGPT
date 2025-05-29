@@ -1,3 +1,5 @@
+# Module for submitting messages to the Petfess page automatically
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -5,13 +7,25 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
+def submit_petfess(submission, open_GUI=False):
+    
+    '''
+    This function is used to submit a message to the Petfess page.
+    It will handle the cookie consent popup and submit the message.
+    It will also save a screenshot of the page if an error occurs.
+    Parameters:
+        submission: The message to submit to the Petfess page. (str)
+        open_GUI: Whether to open the GUI of the browser. Defaults to False (headless mode). (bool)
+    Returns:
+        None
+    '''
 
-def submit_petfess(submission):
-        
     # Configure visible Chrome window
     chrome_options = webdriver.ChromeOptions()
-    #chrome_options.add_argument("--start-maximized") # Uncomment for visible window
-    chrome_options.add_argument("--headless=new")
+    if open_GUI:
+        chrome_options.add_argument("--start-maximized") # Makes window visible
+    else:
+        chrome_options.add_argument("--headless=new") # Runs in headless mode
     driver = webdriver.Chrome(options=chrome_options)
 
     try:
